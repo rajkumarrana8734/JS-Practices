@@ -1,0 +1,25 @@
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    font-family:Arial;
+    background:#f4f4f4;
+}
+
+.gallery{
+    text-align:center;
+}
+
+img{
+    width:400px;
+    height:250px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+button{
+    padding:10px 20px;
+    margin:10px;
+    cursor:pointer;
+}
