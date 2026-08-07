@@ -7,10 +7,10 @@ let prevBtn = document.getElementById("prev");
 
 // Images array
 let images = [
-    "images/pic1.jpg",
-    "images/pic2.jpg",
-    "images/pic3.jpg",
-    "images/~pic4.jpg"
+    "../images/pic1.jpg",
+    "../images/pic2.jpg",
+    "../images/pic3.jpg",
+    "../images/pic4.jpg"
 ];
 
 // Current image index
