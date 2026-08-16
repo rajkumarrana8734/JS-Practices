@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>text1</title>
+</head>
+<body>
+    <select id="color">
+    <option value="">Select Color</option>
+    <option value="Red">Red</option>
+    <option value="Blue">Blue</option>
+    <option value="Green">Green</option>
+</select>
+
+<h2 id="result">Your color is...</h2>
+
+<script>
+let color = document.querySelector("#color");
+let result = document.querySelector("#result");
+
+color.addEventListener("change", function () {
+      result.textContent = "Your color is " + color.value;
+        
+        
+});
+</script>
+</body>
+</html>
