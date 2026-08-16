@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>p2</title>
+</head>
+<body>
+    <div id="card" style="
+    width:200px;
+    height:100px;
+    border:2px solid black;
+    text-align:center;
+    padding-top:30px;
+">
+    Normal Card
+</div>
+
+<script>
+let card = document.querySelector("#card");
+
+card.addEventListener("dblclick", function () {
+
+    if (card.style.width === "200px") {
+
+        card.style.width = "400px";
+        card.style.height = "200px";
+        card.style.paddingTop = "80px";
+        card.style.fontSize = "25px";
+        card.textContent = "Big Card";
+
+    } else {
+
+        card.style.width = "200px";
+        card.style.height = "100px";
+        card.style.paddingTop = "30px";
+        card.style.fontSize = "16px";
+        card.textContent = "Normal Card";
+
+    }
+
+});
+</script>
+</body>
+</html>
