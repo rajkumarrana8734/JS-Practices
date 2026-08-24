@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Show Hide Text</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            padding-top: 100px;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            background: blue;
+            color: white;
+            border-radius: 5px;
+        }
+
+        #output {
+            margin-top: 20px;
+            font-size: 22px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Show / Hide Text</h1>
+
+    <input type="text" id="input" placeholder="Enter something">
+
+    <button id="btn">Show Text</button>
+
+    <p id="output"></p>
+
+
+    <script>
+
+        let input = document.getElementById("input");
+
+        let btn = document.getElementById("btn");
+
+        let output = document.getElementById("output");
+
+
+        btn.addEventListener("click", function () {
+
+            if (output.style.display === "none") {
+
+                output.textContent = input.value;
+
+                output.style.display = "block";
+
+                btn.textContent = "Hide Text";
+
+            } else {
+
+                output.style.display = "none";
+
+                btn.textContent = "Show Text";
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>
