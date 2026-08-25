@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess The Number</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            padding-top: 100px;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 18px;
+            width: 150px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #message {
+            font-size: 22px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🎯 Guess The Number</h1>
+
+    <p>Guess a number between 1 and 10</p>
+
+    <input type="number" id="guess" min="1" max="10">
+
+    <button id="checkBtn">Check</button>
+
+    <p id="message"></p>
+
+    <p id="chances">Chances left: 3</p>
+
+
+    <script>
+
+        let randomNumber = Math.floor(Math.random() * 10) + 1;
+
+        let chances = 3;
+
+        let guessInput = document.getElementById("guess");
+        let checkBtn = document.getElementById("checkBtn");
+        let message = document.getElementById("message");
+        let chancesText = document.getElementById("chances");
+
+
+        checkBtn.addEventListener("click", function () {
+
+            let userGuess = Number(guessInput.value);
+
+
+            if (userGuess === randomNumber) {
+
+                message.textContent = "🎉 You Win!";
+                checkBtn.disabled = true;
+
+            }
+
+            else {
+
+                chances--;
+
+                if (chances === 0) {
+
+                    message.textContent =
+                        "Game Over! Correct number was " + randomNumber;
+
+                    chancesText.textContent = "Chances left: 0";
+
+                    checkBtn.disabled = true;
+
+                }
+
+                else {
+
+                    message.textContent = "❌ Try Again";
+
+                    chancesText.textContent =
+                        "Chances left: " + chances;
+
+                }
+
+            }
+
+            guessInput.value = "";
+
+        });
+
+    </script>
+
+</body>
+</html>
