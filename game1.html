@@ -6,11 +6,19 @@
     <title>Guess The Number</title>
 
     <style>
-        body {
-            font-family: Arial;
-            text-align: center;
-            padding-top: 100px;
-        }
+      body {
+    margin: 0;
+    font-family: Arial;
+    text-align: center;
+
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(45deg, red, blue);
+}
 
         input {
             padding: 10px;
@@ -28,11 +36,19 @@
             font-size: 22px;
             margin-top: 20px;
         }
+        
+        .box{
+            border:2px solid black;
+            width:400px;
+            background-color: aquamarine;
+            
+        }
     </style>
 </head>
 
 <body>
-
+    
+<div class="box">
     <h1>🎯 Guess The Number</h1>
 
     <p>Guess a number between 1 and 10</p>
@@ -44,6 +60,7 @@
     <p id="message"></p>
 
     <p id="chances">Chances left: 3</p>
+    </div>
 
 
     <script>
