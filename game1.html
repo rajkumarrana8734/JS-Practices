@@ -10,14 +10,27 @@
     margin: 0;
     font-family: Arial;
     text-align: center;
-
     min-height: 100vh;
-
     display: flex;
     align-items: center;
     justify-content: center;
+    background: linear-gradient(45deg, red, blue,purple,yellow);
+    background-size: 400% 400%;
+    animation: gradientFlow 8s ease infinite;
 
-    background: linear-gradient(45deg, red, blue);
+}
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
         input {
