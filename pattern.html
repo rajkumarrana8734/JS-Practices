@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number pattern</title>
+    <style>
+        .btn{
+            font-size:20px;
+        }
+    </style>
+</head>
+<body>
+    <h1><big>Pattern:</big></h1>
+    <button onclick="check()" class="btn">Show</button>
+    <h2 class="pattern"></h2>
+
+
+    <script>
+        function check(){
+            let output = " ";
+
+            for(let i = 1;i<= 5;i++){
+                for(let j = 1;j <= i;j++){
+                    output += j + " ";
+                   
+                }
+                 output +="<br>"
+
+            }
+            document.querySelector(".pattern").innerHTML = output;
+        }
+    </script>
+</body>
+</html>
