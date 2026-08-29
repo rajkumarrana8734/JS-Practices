@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIQ WEB</title>
+    <style>
+        #in{
+            font-size:20px;
+        }
+        #btn{
+            font-size:20px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="heading">Enter Your Number:</h1>
+    <input type="number" id="num" placeholder="enter no">
+    <button onclick="check()">Check</button>
+    <h3 id="result"></h3>
+
+    <script>
+        function check(){
+          let n = Number(document.querySelector("#num").value);
+
+          if (n > 0){
+            document.querySelector("#result").innerHTML="Positive Number";
+
+          }
+          else if (n < 0){
+            document.querySelector("#result").innerHTML="Negative Number";
+          }
+          else{
+            document.querySelector("#result").innerHTML="Zero";
+          }
+        }
+
+   </script>
+</body>
+</html>
