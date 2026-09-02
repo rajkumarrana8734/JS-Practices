@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse move</title>
+    <style>
+         body{
+            margin:0;
+            height:100vh;
+            background:#111;
+         }
+    </style>
+</head>
+<body> 
+
+
+    <script>
+       document.addEventListener('mousemove',function(e){
+        let x = e.clientX;
+        let y = e.clientY;
+        document.body.style.background = 
+        `radial-gradient(circle at ${x}px ${y}px, white, #111 200px)`;
+       });
+        </script>
+
+
+</body>
+</html>
