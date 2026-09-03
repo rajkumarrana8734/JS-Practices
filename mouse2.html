@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mouse Events</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #111;
+        }
+
+        #box {
+            width: 200px;
+            height: 200px;
+            background: blue;
+            transition: 0.3s;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="box"></div>
+
+
+    <script>
+
+        let box = document.getElementById("box");
+
+
+        box.addEventListener("mouseenter", function() {
+
+            box.style.background = "red";
+
+        });
+
+
+        
+        box.addEventListener("mouseleave", function() {
+
+            box.style.background = "blue";
+
+        });
+
+
+    
+        box.addEventListener("click", function() {
+
+            box.style.background = "green";
+
+        });
+
+
+        
+        box.addEventListener("mousemove", function() {
+
+            console.log("Mouse is moving");
+
+        });
+
+    </script>
+
+</body>
+</html>
