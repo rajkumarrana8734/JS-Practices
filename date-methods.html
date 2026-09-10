@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>date method</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+    <p id="demo3"></p>
+    <p id="demo4"></p>
+    <p id="demo5"></p>
+    <p id="demo5"></p>
+    <script>
+        const a = new Date();
+        document.getElementById("demo").innerHTML = a.getDate();
+        const b = new Date();
+        document.getElementById("demo1").innerHTML = b.getDay();
+        const c = new Date();
+        document.getElementById("demo2").innerHTML = c.getMonth();
+        const d = new Date();
+        document.getElementById("demo3").innerHTML = d.getHours();
+        const e = new Date();
+        e.setDate(15);
+        document.getElementById("demo4").innerHTML = e;
+        const f = new Date();
+        f.setMonth(4);
+        document.getElementById("demo5").innerHTML = f;
+         const g = new Date();
+         let text = g.toString();
+        document.getElementById("demo6").innerHTML = text;
+        
+    </script>
+</body>
+</html>
