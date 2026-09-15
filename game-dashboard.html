@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming Dashboard</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #111;
+            color: white;
+            transition: 0.3s;
+        }
+
+        body.light {
+            background: #eee;
+            color: #111;
+        }
+
+        header {
+            padding: 20px;
+            text-align: center;
+            background: #1b1b1b;
+        }
+
+        body.light header {
+            background: white;
+        }
+
+        header h1 {
+            margin-bottom: 15px;
+        }
+
+        #search {
+            width: 60%;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        #themeBtn {
+            background: #444;
+            color: white;
+        }
+
+        #addBtn {
+            background: #00b894;
+            color: white;
+        }
+
+        #gameContainer {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            padding: 30px;
+        }
+
+        .game {
+            background: #222;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        body.light .game {
+            background: white;
+        }
+
+        .game:hover {
+            transform: translateY(-8px);
+        }
+
+        .game h2 {
+            margin-bottom: 10px;
+        }
+
+        .fav {
+            background: #e84393;
+            color: white;
+        }
+
+        .delete {
+            background: #d63031;
+            color: white;
+        }
+
+        #gameCount {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modalBox {
+            background: white;
+            color: black;
+            padding: 30px;
+            border-radius: 12px;
+            width: 300px;
+        }
+
+        .modalBox input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+        }
+
+        #saveBtn {
+            background: #0984e3;
+            color: white;
+        }
+
+        #closeBtn {
+            background: #636e72;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <h1>🎮 My Gaming Dashboard</h1>
+
+    <input
+        type="text"
+        id="search"
+        placeholder="Search game..."
+    >
+
+    <br>
+
+    <button id="themeBtn">🌙 Dark / Light</button>
+    <button id="addBtn">➕ Add Game</button>
+
+</header>
+
+<h2 id="gameCount">Total Games: 4</h2>
+
+<div id="gameContainer">
+
+    <div class="game">
+        <h2>GTA V</h2>
+        <p>Action</p>
+        <button class="fav">❤️ Favorite</button>
+        <button class="delete">🗑️ Delete</button>
+    </div>
+
+    <div class="game">
+        <h2>Resident Evil 4</h2>
+        <p>Horror</p>
+        <button class="fav">❤️ Favorite</button>
+        <button class="delete">🗑️ Delete</button>
+    </div>
+
+    <div class="game">
+        <h2>Batman Arkham</h2>
+        <p>Action</p>
+        <button class="fav">❤️ Favorite</button>
+        <button class="delete">🗑️ Delete</button>
+    </div>
+
+    <div class="game">
+        <h2>Far Cry 3</h2>
+        <p>Adventure</p>
+        <button class="fav">❤️ Favorite</button>
+        <button class="delete">🗑️ Delete</button>
+    </div>
+
+</div>
+
+
+<!-- MODAL -->
+
+<div id="modal">
+
+    <div class="modalBox">
+
+        <h2>Add New Game</h2>
+
+        <input
+            type="text"
+            id="gameName"
+            placeholder="Game name"
+        >
+
+        <input
+            type="text"
+            id="gameGenre"
+            placeholder="Genre"
+        >
+
+        <button id="saveBtn">Save Game</button>
+
+        <button id="closeBtn">Close</button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    // DOM SELECTORS
+
+    const search = document.querySelector("#search");
+    const gameContainer = document.querySelector("#gameContainer");
+    const gameCount = document.querySelector("#gameCount");
+
+    const themeBtn = document.querySelector("#themeBtn");
+    const addBtn = document.querySelector("#addBtn");
+
+    const modal = document.querySelector("#modal");
+    const saveBtn = document.querySelector("#saveBtn");
+    const closeBtn = document.querySelector("#closeBtn");
+
+    const gameName = document.querySelector("#gameName");
+    const gameGenre = document.querySelector("#gameGenre");
+
+
+    // -----------------------------
+    // 1. CLICK EVENT
+    // -----------------------------
+
+    themeBtn.addEventListener("click", function() {
+
+        document.body.classList.toggle("light");
+
+    });
+
+
+    // -----------------------------
+    // 2. OPEN MODAL
+    // -----------------------------
+
+    addBtn.addEventListener("click", function() {
+
+        modal.style.display = "flex";
+
+        gameName.focus();
+
+    });
+
+
+    // -----------------------------
+    // 3. CLOSE MODAL
+    // -----------------------------
+
+    closeBtn.addEventListener("click", function() {
+
+        modal.style.display = "none";
+
+    });
+
+
+    // -----------------------------
+    // 4. ADD NEW GAME
+    // -----------------------------
+
+    saveBtn.addEventListener("click", function() {
+
+        const name = gameName.value;
+        const genre = gameGenre.value;
+
+        if(name === "" || genre === "") {
+
+            alert("Please enter game name and genre");
+
+            return;
+        }
+
+
+        // CREATE NEW DIV
+
+        const game = document.createElement("div");
+
+        game.classList.add("game");
+
+
+        // CREATE HTML
+
+        game.innerHTML = `
+            <h2>${name}</h2>
+            <p>${genre}</p>
+
+            <button class="fav">
+                ❤️ Favorite
+            </button>
+
+            <button class="delete">
+                🗑️ Delete
+            </button>
+        `;
+
+
+        // ADD GAME TO CONTAINER
+
+        gameContainer.appendChild(game);
+
+
+        // CLEAR INPUT
+
+        gameName.value = "";
+        gameGenre.value = "";
+
+
+        // CLOSE MODAL
+
+        modal.style.display = "none";
+
+
+        updateCount();
+
+    });
+
+
+    // -----------------------------
+    // 5. EVENT DELEGATION
+    // -----------------------------
+
+    gameContainer.addEventListener("click", function(event) {
+
+        // FAVORITE
+
+        if(event.target.classList.contains("fav")) {
+
+            event.target.innerText = "💖 Favorited";
+
+        }
+
+
+        // DELETE
+
+        if(event.target.classList.contains("delete")) {
+
+            event.target.parentElement.remove();
+
+            updateCount();
+
+        }
+
+    });
+
+
+    // -----------------------------
+    // 6. SEARCH EVENT
+    // -----------------------------
+
+    search.addEventListener("input", function() {
+
+        const searchText = search.value.toLowerCase();
+
+        const games = document.querySelectorAll(".game");
+
+
+        games.forEach(function(game) {
+
+            const name =
+                game.querySelector("h2").innerText.toLowerCase();
+
+
+            if(name.includes(searchText)) {
+
+                game.style.display = "block";
+
+            }
+            else {
+
+                game.style.display = "none";
+
+            }
+
+        });
+
+    });
+
+
+    // -----------------------------
+    // 7. KEYBOARD EVENT
+    // -----------------------------
+
+    document.addEventListener("keydown", function(event) {
+
+        if(event.key === "Escape") {
+
+            modal.style.display = "none";
+
+        }
+
+    });
+
+
+    // -----------------------------
+    // 8. MOUSEOVER EVENT
+    // -----------------------------
+
+    gameContainer.addEventListener("mouseover", function(event) {
+
+        if(event.target.classList.contains("game")) {
+
+            event.target.style.transform = "scale(1.03)";
+
+        }
+
+    });
+
+
+    // -----------------------------
+    // 9. MOUSEOUT EVENT
+    // -----------------------------
+
+    gameContainer.addEventListener("mouseout", function(event) {
+
+        if(event.target.classList.contains("game")) {
+
+            event.target.style.transform = "scale(1)";
+
+        }
+
+    });
+
+
+    // -----------------------------
+    // 10. UPDATE GAME COUNT
+    // -----------------------------
+
+    function updateCount() {
+
+        const total =
+            document.querySelectorAll(".game").length;
+
+        gameCount.innerText =
+            "Total Games: " + total;
+
+    }
+
+</script>
+
+</body>
+</html>
