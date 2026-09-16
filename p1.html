@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS Practice Project - Cart & Search</title>
+  <style>
+    body {
+         font-family: Arial, sans-serif; 
+         padding: 20px; 
+         background-color: #f9f9f9; 
+        }
+    .controls { 
+        margin-bottom: 20px; 
+        display: flex; 
+        gap: 10px;
+     }
+    input, select {
+         padding: 8px; 
+         font-size: 14px; border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+    .product-list {
+         display: flex; gap: 15px;
+          flex-wrap: wrap;
+           margin-bottom: 30px;
+         }
+    .card {
+         border: 1px solid #ddd;
+          padding: 15px; border-radius: 8px;
+           width: 160px; background: white;
+           box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+         }
+    .card h4 {
+         margin: 0 0 10px 0;
+         }
+    .card p { 
+        margin: 0 0 10px 0; 
+        color: #555;
+     }
+    button { 
+        background-color: #28a745;
+         color: white; 
+         border: none; 
+         padding: 8px 12px; 
+         border-radius: 4px; 
+         cursor: pointer; 
+        }
+    button:hover { 
+        background-color: #218838;
+     }
+    .cart-section { 
+        padding: 20px;
+         background: white;
+          border-radius: 8px;
+           border: 1px solid #ddd;
+            max-width: 400px; 
+        }
+    .cart-section ul {
+         padding-left: 20px;
+         }
+    .cart-section li { 
+        margin-bottom: 5px; 
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Product Store</h2>
+  
+
+  <div class="controls">
+    <input type="text" id="searchInput" placeholder="Search product...">
+    <select id="categorySelect">
+      <option value="all">All Categories</option>
+      <option value="electronics">Electronics</option>
+      <option value="clothing">Clothing</option>
+    </select>
+  </div>
+
+
+  <div id="productList" class="product-list"></div>
+
+  
+  <div class="cart-section">
+    <h3>Shopping Cart</h3>
+    <ul id="cartList"></ul>
+    <h4>Total: ₹<span id="totalPrice">0</span></h4>
+  </div>
+
+  <script>
+  
+    const products = [
+      { id: 1, name: "Laptop", price: 50000, category: "electronics" },
+      { id: 2, name: "T-Shirt", price: 800, category: "clothing" },
+      { id: 3, name: "Headphones", price: 2000, category: "electronics" },
+      { id: 4, name: "Jeans", price: 1500, category: "clothing" }
+    ];
+
+    let cart = [];
+
+   
+    const productListEl = document.getElementById("productList");
+    const searchInput = document.getElementById("searchInput");
+    const categorySelect = document.getElementById("categorySelect");
+    const cartListEl = document.getElementById("cartList");
+    const totalPriceEl = document.getElementById("totalPrice");
+
+    // 2. Render Products Function
+    function renderProducts(items) {
+      productListEl.innerHTML = "";
+      
+      if (items.length === 0) {
+        productListEl.innerHTML = "<p>No products found.</p>";
+        return;
+      }
+
+      items.forEach(product => {
+        const div = document.createElement("div");
+        div.className = "card";
+        div.innerHTML = `
+          <h4>${product.name}</h4>
+          <p>Category: ${product.category}</p>
+          <p>Price: ₹${product.price}</p>
+          <button onclick="addToCart(${product.id})">Add to Cart</button>
+        `;
+        productListEl.appendChild(div);
+      });
+    }
+
+
+    function filterProducts() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const selectedCategory = categorySelect.value;
+
+      const filtered = products.filter(product => {
+        const matchesSearch = product.name.toLowerCase().includes(searchTerm);
+        const matchesCategory = selectedCategory === "all" || product.category === selectedCategory;
+        return matchesSearch && matchesCategory;
+      });
+
+      renderProducts(filtered);
+    }
+
+
+    searchInput.addEventListener("input", filterProducts);
+    categorySelect.addEventListener("change", filterProducts);
+
+
+    function addToCart(productId) {
+
+      const productToAdd = products.find(prod => prod.id === productId);
+      
+      if (productToAdd) {
+        cart.push(productToAdd);
+        updateCartUI();
+      }
+    }
+
+    function updateCartUI() {
+  
+      cartListEl.innerHTML = "";
+
+
+      cart.forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = `${item.name} - ₹${item.price}`;
+        cartListEl.appendChild(li);
+      });
+
+  
+      const total = cart.reduce((sum, item) => sum + item.price, 0);
+      totalPriceEl.textContent = total;
+    }
+
+
+    renderProducts(products);
+  </script>
+
+</body>
+</html>
