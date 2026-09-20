@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Quiz App</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        button {
+            display: block;
+            margin: 10px auto;
+            padding: 10px;
+            width: 250px;
+            cursor: pointer;
+        }
+
+        #result {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2 id="question">Question</h2>
+
+    <button class="option">Option 1</button>
+    <button class="option">Option 2</button>
+    <button class="option">Option 3</button>
+    <button class="option">Option 4</button>
+
+    <p id="result"></p>
+
+
+    <script>
+
+       
+        let question = document.querySelector("#question");
+
+      
+        let buttons = document.querySelectorAll(".option");
+
+
+        let result = document.querySelector("#result");
+
+
+        let correctAnswer = "JavaScript";
+
+    
+        question.textContent =
+            "Which language is used for web interactivity?";
+
+
+
+        buttons[0].textContent = "Python";
+        buttons[1].textContent = "Java";
+        buttons[2].textContent = "JavaScript";
+        buttons[3].textContent = "C++";
+
+
+        
+        buttons.forEach(function (button) {
+
+            button.addEventListener("click", function () {
+
+
+                if (button.textContent === correctAnswer) {
+
+                    result.textContent = "Correct Answer! 🎉";
+
+                } else {
+
+                    result.textContent = "Wrong Answer ❌";
+
+                }
+
+            });
+
+        });
+
+    </script>
+
+</body>
+
+</html>
