@@ -1,0 +1,123 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Result</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        input {
+            display: block;
+            width: 250px;
+            padding: 10px;
+            margin: 10px auto;
+        }
+
+        button {
+            padding: 10px 25px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 25px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Student Result Calculator</h2>
+
+    <input type="number" id="sub1" placeholder="Subject 1">
+    <input type="number" id="sub2" placeholder="Subject 2">
+    <input type="number" id="sub3" placeholder="Subject 3">
+    <input type="number" id="sub4" placeholder="Subject 4">
+    <input type="number" id="sub5" placeholder="Subject 5">
+
+    <button id="checkBtn">Check Result</button>
+
+    <div id="result"></div>
+
+
+    <script>
+
+        let checkBtn = document.querySelector("#checkBtn");
+        let result = document.querySelector("#result");
+
+        checkBtn.addEventListener("click", function () {
+
+            let marks = [
+                Number(document.querySelector("#sub1").value),
+                Number(document.querySelector("#sub2").value),
+                Number(document.querySelector("#sub3").value),
+                Number(document.querySelector("#sub4").value),
+                Number(document.querySelector("#sub5").value)
+            ];
+
+            let total = 0;
+            let fail = false;
+
+            // Loop
+            for (let i = 0; i < marks.length; i++) {
+
+                total = total + marks[i];
+
+                // Conditional statement
+                if (marks[i] < 35) {
+                    fail = true;
+                }
+            }
+
+            // Arithmetic operator
+            let percentage = total / 5;
+
+            let grade;
+
+
+            // Conditional statements
+            if (fail === true) {
+                grade = "Fail";
+            }
+            else if (percentage >= 90) {
+                grade = "A+";
+            }
+            else if (percentage >= 80) {
+                grade = "A";
+            }
+            else if (percentage >= 70) {
+                grade = "B";
+            }
+            else if (percentage >= 60) {
+                grade = "C";
+            }
+            else if (percentage >= 50) {
+                grade = "D";
+            }
+            else {
+                grade = "Fail";
+            }
+
+
+            result.innerHTML =
+                "Total Marks: " + total + "<br>" +
+                "Percentage: " + percentage + "%<br>" +
+                "Grade: " + grade;
+
+        });
+
+    </script>
+
+</body>
+
+</html>
+
