@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Quote Generator</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #3498db;
+      transition: background-color 0.5s ease;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      max-width: 450px;
+      width: 100%;
+      text-align: center;
+    }
+    .quote-text {
+      font-size: 20px;
+      color: #2c3e50;
+      margin-bottom: 15px;
+      min-height: 60px;
+    }
+    .author-text {
+      font-size: 14px;
+      color: #7f8c8d;
+      font-style: italic;
+      margin-bottom: 25px;
+    }
+    button {
+      background-color: #2c3e50;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    button:hover { opacity: 0.9; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <p class="quote-text" id="quote">"New quote generate karne ke liye button dabayein."</p>
+    <p class="author-text" id="author">- Author</p>
+    <button id="nextBtn">New Quote</button>
+  </div>
+
+  <script>
+    // 1. Data Structure (Array of Objects)
+    const quotes = [
+      { text: "Consistency is more important than perfection.", author: "Anonymous" },
+      { text: "Code is like humor. When you have to explain it, it’s bad.", author: "Cory House" },
+      { text: "Simplicity is the soul of efficiency.", author: "Austin Freeman" },
+      { text: "First, solve the problem. Then, write the code.", author: "John Johnson" },
+      { text: "Make it work, make it right, make it fast.", author: "Kent Beck" }
+    ];
+
+    // Background colors list
+    const colors = ["#1abc9c", "#2ecc71", "#3498db", "#9b59b6", "#e67e22", "#e74c3c"];
+
+    // 2. DOM Elements Selection
+    const quoteEl = document.getElementById("quote");
+    const authorEl = document.getElementById("author");
+    const nextBtn = document.getElementById("nextBtn");
+
+    // 3. Function to Get Random Item from Array
+    function getRandomQuote() {
+      // Random Index for Quote
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const selectedQuote = quotes[randomIndex];
+
+      // Random Index for Background Color
+      const randomColor = colors[Math.floor(Math.random() * colors.length)];
+
+      // Update DOM
+      quoteEl.textContent = `"${selectedQuote.text}"`;
+      authorEl.textContent = `- ${selectedQuote.author}`;
+      document.body.style.backgroundColor = randomColor;
+    }
+
+    // 4. JS Event Listener (Click)
+    nextBtn.addEventListener("click", getRandomQuote);
+
+    // Initial Load
+    getRandomQuote();
+  </script>
+
+</body>
+</html>
