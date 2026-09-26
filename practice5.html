@@ -58,7 +58,7 @@
   </div>
 
   <script>
-    // 1. Data Structure (Array of Objects)
+
     const quotes = [
       { text: "Consistency is more important than perfection.", author: "Anonymous" },
       { text: "Code is like humor. When you have to explain it, it’s bad.", author: "Cory House" },
@@ -67,33 +67,33 @@
       { text: "Make it work, make it right, make it fast.", author: "Kent Beck" }
     ];
 
-    // Background colors list
+
     const colors = ["#1abc9c", "#2ecc71", "#3498db", "#9b59b6", "#e67e22", "#e74c3c"];
 
-    // 2. DOM Elements Selection
+
     const quoteEl = document.getElementById("quote");
     const authorEl = document.getElementById("author");
     const nextBtn = document.getElementById("nextBtn");
 
-    // 3. Function to Get Random Item from Array
+
     function getRandomQuote() {
-      // Random Index for Quote
+
       const randomIndex = Math.floor(Math.random() * quotes.length);
       const selectedQuote = quotes[randomIndex];
 
-      // Random Index for Background Color
+
       const randomColor = colors[Math.floor(Math.random() * colors.length)];
 
-      // Update DOM
+      
       quoteEl.textContent = `"${selectedQuote.text}"`;
       authorEl.textContent = `- ${selectedQuote.author}`;
       document.body.style.backgroundColor = randomColor;
     }
 
-    // 4. JS Event Listener (Click)
+
     nextBtn.addEventListener("click", getRandomQuote);
 
-    // Initial Load
+
     getRandomQuote();
   </script>
 
