@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Clock & Theme Switcher</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', monospace; }
+    
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #1a1a1a;
+      color: #ffffff;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+
+    body.light-mode {
+      background-color: #f0f2f5;
+      color: #222222;
+    }
+
+    .clock-card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    body.light-mode .clock-card {
+      background: #ffffff;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      border: 1px solid #dddddd;
+    }
+
+    .time {
+      font-size: 48px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .date {
+      font-size: 18px;
+      opacity: 0.8;
+      margin-bottom: 25px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 14px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      background-color: #007bff;
+      color: white;
+      font-weight: bold;
+      transition: transform 0.2s;
+    }
+
+    button:active { transform: scale(0.95); }
+  </style>
+</head>
+<body>
+
+  <div class="clock-card">
+    <div class="time" id="timeDisplay">00:00:00 AM</div>
+    <div class="date" id="dateDisplay">Loading date...</div>
+    <button id="themeBtn">Switch Theme</button>
+  </div>
+
+  <script>
+
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+    const appState = {
+      isDarkMode: true
+    };
+
+
+    const timeDisplay = document.getElementById("timeDisplay");
+    const dateDisplay = document.getElementById("dateDisplay");
+    const themeBtn = document.getElementById("themeBtn");
+
+  
+    function updateClock() {
+      const now = new Date();
+
+
+      let hours = now.getHours();
+      const minutes = String(now.getMinutes()).padStart(2, "0");
+      const seconds = String(now.getSeconds()).padStart(2, "0");
+      const ampm = hours >= 12 ? "PM" : "AM";
+
+  
+      hours = hours % 12 || 12;
+      const formattedHours = String(hours).padStart(2, "0");
+
+   
+      const dayName = days[now.getDay()];
+      const monthName = months[now.getMonth()];
+      const dateNum = now.getDate();
+      const year = now.getFullYear();
+
+ 
+      timeDisplay.textContent = `${formattedHours}:${minutes}:${seconds} ${ampm}`;
+      dateDisplay.textContent = `${dayName}, ${dateNum} ${monthName} ${year}`;
+    }
+
+
+    themeBtn.addEventListener("click", () => {
+      appState.isDarkMode = !appState.isDarkMode;
+      document.body.classList.toggle("light-mode", !appState.isDarkMode);
+    });
+
+
+    setInterval(updateClock, 1000);
+    updateClock(); // Initial Call
+  </script>
+
+</body>
+</html>
