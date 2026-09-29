@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            height: 600px;
+            width: 550px;
+            border-radius: 20px;
+            box-shadow: 0px 0px 10px rgb(17, 16, 16);
+            background-color: rgb(253, 253, 253);
+        }
+
+        .heading {
+            text-align: center;
+            font-size: 40px;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: rgb(12, 12, 205);
+            color: wheat;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        label {
+            font-size: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            margin-top: 10px;
+            font-weight: 400;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0 15px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px;
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="heading">
+            Fill The Form
+        </div>
+
+        <!-- CORRECTED: validateForm() -->
+        <form onsubmit="return validateForm()">
+
+            <label>Name:</label>
+            <input type="text" id="name">
+
+            <label>Email:</label>
+            <input type="email" id="email">
+
+            <label>Contact No:</label>
+            <input type="text" id="contact">
+
+            <label>Password:</label>
+            <input type="password" id="password">
+
+            <label>City:</label>
+            <select id="city">
+                <option value="">Select City</option>
+                <option>Ahmedabad</option>
+                <option>Surat</option>
+                <option>Vadodara</option>
+                <option>Rajkot</option>
+            </select>
+
+            <button type="submit">Register</button>
+
+            <p id="message"></p>
+
+        </form>
+
+    </div>
+
+
+    <script>
+
+        function validateForm() {
+
+            let name = document.getElementById("name").value;
+            let contact = document.getElementById("contact").value;
+            let password = document.getElementById("password").value;
+
+            if (name == "") {
+                alert("Please enter Name");
+                return false;
+            }
+
+            if (contact == "") {
+                alert("Please enter Contact No");
+                return false;
+            }
+
+            if (password == "") {
+                alert("Please enter Password");
+                return false;
+            }
+
+            alert("Registration Successful!");
+
+            return false;
+        }
+
+    </script>
+
+</body>
+
+</html>
