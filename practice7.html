@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <ul id="menu">
+    <li>Apple</li>
+    <li>Banana</li>
+    <li>Cherry</li>
+  </ul>
+
+  <script>
+    const menu = document.getElementById("menu");
+
+    // One listener handles all <li> clicks
+    menu.addEventListener("click", (e) => {
+      if (e.target.tagName === "LI") {
+        alert(`You clicked: ${e.target.textContent}`);
+      }
+    });
+  </script>
+</body>
+</html>
