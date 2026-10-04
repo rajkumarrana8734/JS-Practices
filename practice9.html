@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Largest Number</title>
+</head>
+<body>
+
+    <h2>Find Largest Number</h2>
+
+    <input type="number" id="a" placeholder="First number">
+    <input type="number" id="b" placeholder="Second number">
+
+    <button onclick="find()">Check</button>
+
+    <h3 id="result"></h3>
+
+    <script>
+        function find() {
+
+            let a = Number(document.querySelector("#a").value);
+            let b = Number(document.querySelector("#b").value);
+
+            if (a > b) {
+                document.querySelector("#result").innerHTML = a + " is Largest";
+            }
+            else if (b > a) {
+                document.querySelector("#result").innerHTML = b + " is Largest";
+            }
+            else {
+                document.querySelector("#result").innerHTML = "Both are Equal";
+            }
+        }
+    </script>
+
+</body>
+</html>
