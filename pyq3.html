@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration and Login</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: lightgray;
+        }
+
+        .box {
+            width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            color: blue;
+        }
+
+        input {
+            width: 95%;
+            padding: 10px;
+            margin: 8px 0;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: blue;
+            color: white;
+            border: none;
+        }
+
+        #result {
+            text-align: center;
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <h2>User Registration</h2>
+
+    <form onsubmit="return register()">
+
+        <input type="text" id="name" placeholder="Enter Name">
+
+        <input type="text" id="mobile"
+               placeholder="Enter Mobile Number">
+
+        <input type="text" id="email"
+               placeholder="Enter Email">
+
+        <input type="password" id="password"
+               placeholder="Enter Password">
+
+        <input type="password" id="confirm"
+               placeholder="Confirm Password">
+
+        <button type="submit">Register</button>
+
+    </form>
+
+    <p id="result"></p>
+
+    <hr>
+
+    <h2>Login</h2>
+
+    <input type="text" id="loginEmail"
+           placeholder="Enter Email">
+
+    <input type="password" id="loginPassword"
+           placeholder="Enter Password">
+
+    <button onclick="login()">Login</button>
+
+</div>
+
+
+<script>
+
+function register() {
+
+    let name = document.getElementById("name").value;
+    let mobile = document.getElementById("mobile").value;
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    let confirm = document.getElementById("confirm").value;
+
+    if (name == "") {
+        alert("Name is required");
+        return false;
+    }
+
+    if (!/^[A-Za-z ]+$/.test(name)) {
+        alert("Name must contain alphabets only");
+        return false;
+    }
+
+    if (!/^[0-9]{10}$/.test(mobile)) {
+        alert("Mobile must be 10 digits");
+        return false;
+    }
+
+    if (!email.includes("@")) {
+        alert("Enter valid Email");
+        return false;
+    }
+
+    if (password != confirm) {
+        alert("Password does not match");
+        return false;
+    }
+
+    document.getElementById("result").innerHTML =
+        "Registration Successful";
+
+    return false;
+}
+
+
+function login() {
+
+    let email = document.getElementById("loginEmail").value;
+    let password = document.getElementById("loginPassword").value;
+
+    if (email == "" || password == "") {
+        alert("Enter Email and Password");
+    }
+    else {
+        alert("Login Successful");
+    }
+}
+
+</script>
+
+</body>
+</html>
