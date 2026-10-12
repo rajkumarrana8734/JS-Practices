@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admission Form</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #f4f4f9; 
+            padding: 20px; 
+        }
+        form { 
+            width: 400px; 
+            margin: auto; 
+            background: white; 
+            padding: 20px; 
+            border-radius: 8px; 
+            box-shadow: 0 0 10px rgba(0,0,0,0.1); 
+        }
+        input, select { 
+            width: 100%; 
+            padding: 8px; 
+            margin: 10px 0; 
+            border: 1px solid #ccc; 
+            border-radius: 4px; 
+        }
+        input[type="submit"], input[type="reset"] { 
+            width: 48%; 
+            background: #0066cc; 
+            color: white; 
+            border: none; 
+            cursor: pointer; 
+        }
+        input[type="reset"] { 
+            background: #cc0000; 
+        }
+    </style>
+    <script>
+        function validateForm() {
+            var mobile = document.getElementById("mobile").value;
+            var email = document.getElementById("email").value;
+            
+            if (mobile.length != 10 || isNaN(mobile)) {
+                alert("Mobile number must be exactly 10 digits.");
+                return false;
+            }
+            if (email.indexOf("@") == -1) {
+                alert("Email-id must have @ sign.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <form onsubmit="return validateForm()">
+        <h2>Admission Form</h2>
+        Name: <input type="text" id="name" required>
+        Email: <input type="text" id="email" required>
+        Mobile Number: <input type="text" id="mobile" required>
+        Course: 
+        <select>
+            <option>BCA</option>
+            <option>B.Sc. IT</option>
+            <option>PGDCA</option>
+        </select>
+        Gender: <br>
+        <input type="radio" name="gender" value="Male"> Male 
+        <input type="radio" name="gender" value="Female"> Female <br><br>
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset">
+    </form>
+</body>
+</html>
