@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account Details</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2 id="welcomeMsg"></h2>
+        <div class="card">
+            <h3>Account Summary</h3>
+            <p><strong>Account Number:</strong> 34098211029</p>
+            <p><strong>Account Type:</strong> Savings</p>
+            <p><strong>Balance:</strong> ₹45,500.00</p>
+        </div>
+    </div>
+    <script>
+        let user = localStorage.getItem("bankUser") || "Customer";
+        document.getElementById("welcomeMsg").innerText = "Welcome, " + user + "!";
+    </script>
+</body>
+</html>
