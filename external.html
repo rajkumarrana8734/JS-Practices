@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: lightblue;
+        }
+
+        .container {
+            width: 400px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        h2 {
+            text-align: center;
+            color: blue;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="radio"] {
+            width: auto;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: darkblue;
+        }
+
+        #msg {
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Student Registration</h2>
+
+    <form id="myForm">
+
+        <label>Name:</label>
+        <input type="text" id="name"
+               placeholder="Enter your name" required>
+
+        <label>Email:</label>
+        <input type="email" id="email"
+               placeholder="student@gmail.com" required>
+
+        <label>Phone Number:</label>
+        <input type="tel" id="phone"
+               placeholder="Enter 10 digit number"
+               maxlength="10" required>
+
+        <label>Gender:</label>
+
+        <input type="radio" name="gender" value="Male" required> Male
+        <input type="radio" name="gender" value="Female"> Female
+        <input type="radio" name="gender" value="Other"> Other
+
+        <label>Date of Birth:</label>
+        <input type="date" id="dob" required>
+
+        <label>Course:</label>
+        <select id="course" required>
+            <option value="">Select Course</option>
+            <option value="BCA">BCA</option>
+            <option value="BBA">BBA</option>
+            <option value="B.Com">B.Com</option>
+            <option value="B.Sc">B.Sc</option>
+            <option value="BA">BA</option>
+        </select>
+
+        <label>Address:</label>
+        <textarea id="address" rows="3"
+                  placeholder="Enter your address"
+                  required></textarea>
+
+        <button type="submit">Submit</button>
+
+        <p id="msg"></p>
+
+    </form>
+</div>
+
+<script>
+    document.getElementById("myForm").addEventListener("submit", function(e) {
+
+        e.preventDefault();
+
+        let name = document.getElementById("name").value.trim();
+        let email = document.getElementById("email").value.trim();
+        let phone = document.getElementById("phone").value.trim();
+        let dob = document.getElementById("dob").value;
+        let course = document.getElementById("course").value;
+        let address = document.getElementById("address").value.trim();
+
+        let gender = document.querySelector(
+            'input[name="gender"]:checked'
+        );
+
+        let msg = document.getElementById("msg");
+
+        let namePattern = /^[A-Za-z ]+$/;
+        let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        let phonePattern = /^[0-9]{10}$/;
+
+        if (!namePattern.test(name)) {
+            msg.style.color = "red";
+            msg.innerHTML = "Enter a valid name!";
+            return;
+        }
+
+        if (!emailPattern.test(email)) {
+            msg.style.color = "red";
+            msg.innerHTML = "Enter a valid email!";
+            return;
+        }
+
+        if (!phonePattern.test(phone)) {
+            msg.style.color = "red";
+            msg.innerHTML = "Enter a valid 10-digit phone number!";
+            return;
+        }
+
+        if (!gender) {
+            msg.style.color = "red";
+            msg.innerHTML = "Please select gender!";
+            return;
+        }
+
+        let today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        if (!dob || new Date(dob + "T00:00:00") >= today) {
+            msg.style.color = "red";
+            msg.innerHTML = "Enter a valid date of birth!";
+            return;
+        }
+
+        if (course === "") {
+            msg.style.color = "red";
+            msg.innerHTML = "Please select a course!";
+            return;
+        }
+
+        if (address.length < 5) {
+            msg.style.color = "red";
+            msg.innerHTML = "Address must be at least 5 characters!";
+            return;
+        }
+
+        msg.style.color = "green";
+        msg.innerHTML =
+            "Registration Successful!<br>" +
+            "Welcome, " + name + "!";
+
+    });
+</script>
+
+</body>
+</html>
+
+
