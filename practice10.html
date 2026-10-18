@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f7;
+            margin: 0;
+            padding: 25px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px #cccccc;
+        }
+
+        h1 {
+            text-align: center;
+            color: #243b64;
+        }
+
+        input {
+            width: 95%;
+            padding: 10px;
+            margin: 7px 0 14px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 16px;
+            background: #2457c5;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #173d91;
+        }
+
+        .delete-btn {
+            background: #d62828;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 25px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background: #243b64;
+            color: white;
+        }
+
+        #message {
+            color: #167a37;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <h1>Student Management System</h1>
+
+    <form id="studentForm">
+        <label>Student Name:</label>
+        <input type="text" id="name"
+               placeholder="Enter student name" required>
+
+        <label>Roll Number:</label>
+        <input type="number" id="roll"
+               placeholder="Enter roll number"
+               min="1" step="1" required>
+
+        <label>JavaScript Marks:</label>
+        <input type="number" id="marks"
+               placeholder="Enter marks (0-100)"
+               min="0" max="100" step="1" required>
+
+        <button type="submit">Add Student</button>
+    </form>
+
+    <p id="message"></p>
+
+    <h2>Student Records</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Roll No.</th>
+                <th>Marks</th>
+                <th>Grade</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="studentList"></tbody>
+    </table>
+</div>
+
+<script>
+    let students = [];
+
+    const form = document.getElementById("studentForm");
+    const studentList = document.getElementById("studentList");
+    const message = document.getElementById("message");
+
+    function calculateGrade(marks) {
+        if (marks >= 90) return "A+";
+        if (marks >= 75) return "A";
+        if (marks >= 60) return "B";
+        if (marks >= 40) return "C";
+        return "Fail";
+    }
+
+    function displayStudents() {
+        studentList.innerHTML = "";
+
+        students.forEach(function(student, index) {
+            const row = document.createElement("tr");
+
+            [
+                student.name,
+                student.roll,
+                student.marks,
+                calculateGrade(student.marks)
+            ].forEach(function(value) {
+                const cell = document.createElement("td");
+                cell.textContent = value;
+                row.appendChild(cell);
+            });
+
+            const actionCell = document.createElement("td");
+            const deleteButton = document.createElement("button");
+
+            deleteButton.textContent = "Delete";
+            deleteButton.className = "delete-btn";
+
+            deleteButton.addEventListener("click", function() {
+                students.splice(index, 1);
+                displayStudents();
+                message.textContent = "Student deleted successfully.";
+            });
+
+            actionCell.appendChild(deleteButton);
+            row.appendChild(actionCell);
+            studentList.appendChild(row);
+        });
+    }
+
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const roll = Number(document.getElementById("roll").value);
+        const marks = Number(document.getElementById("marks").value);
+
+        if (!name || !Number.isInteger(roll) || roll < 1 ||
+            !Number.isInteger(marks) || marks < 0 || marks > 100) {
+            message.textContent = "Please enter valid student details.";
+            return;
+        }
+
+        if (students.some(student => student.roll === roll)) {
+            message.textContent = "Roll number already exists.";
+            return;
+        }
+
+        students.push({ name, roll, marks });
+
+        displayStudents();
+        form.reset();
+
+        message.textContent = "Student added successfully!";
+    });
+</script>
+</body>
+</html>  
