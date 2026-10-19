@@ -1,0 +1,263 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #edf2f7;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #243b64;
+        }
+
+        input {
+            padding: 10px;
+            margin: 5px;
+            width: 90%;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 14px;
+            margin: 5px;
+            background: #2457c5;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .return-btn {
+            background: #16804a;
+        }
+
+        .delete-btn {
+            background: #c62828;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 9px;
+            text-align: center;
+        }
+
+        th {
+            background: #243b64;
+            color: white;
+        }
+
+        #message {
+            font-weight: bold;
+            color: #16804a;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+
+    <h1>Library Management System</h1>
+
+    <h2>Add New Book</h2>
+
+    <form id="bookForm">
+        <input type="text" id="bookName"
+               placeholder="Enter book name" required>
+
+        <input type="text" id="author"
+               placeholder="Enter author name" required>
+
+        <input type="number" id="bookId"
+               placeholder="Enter book ID"
+               min="1" step="1" required>
+
+        <button type="submit">Add Book</button>
+    </form>
+
+    <h2>Search Books</h2>
+
+    <input type="text" id="search"
+           placeholder="Search by book name or author">
+
+    <p id="message"></p>
+
+    <h2>Book Records</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Book ID</th>
+                <th>Book Name</th>
+                <th>Author</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody id="bookList"></tbody>
+    </table>
+
+</div>
+
+<script>
+    let books = [
+        {
+            id: 101,
+            name: "JavaScript Basics",
+            author: "John Smith",
+            issued: false
+        },
+        {
+            id: 102,
+            name: "Python Programming",
+            author: "David Miller",
+            issued: false
+        }
+    ];
+
+    const form = document.getElementById("bookForm");
+    const bookList = document.getElementById("bookList");
+    const search = document.getElementById("search");
+    const message = document.getElementById("message");
+
+    function displayBooks(bookArray = books) {
+        bookList.innerHTML = "";
+
+        if (bookArray.length === 0) {
+            bookList.innerHTML =
+                "<tr><td colspan='5'>No books found</td></tr>";
+            return;
+        }
+
+        bookArray.forEach(function(book) {
+            const row = document.createElement("tr");
+
+            [book.id, book.name, book.author,
+             book.issued ? "Issued" : "Available"]
+                .forEach(function(value) {
+                    const cell = document.createElement("td");
+                    cell.textContent = value;
+                    row.appendChild(cell);
+                });
+
+            const actionCell = document.createElement("td");
+
+            const issueButton = document.createElement("button");
+            issueButton.textContent =
+                book.issued ? "Return" : "Issue";
+
+            issueButton.className =
+                book.issued ? "return-btn" : "";
+
+            issueButton.addEventListener("click", function() {
+                book.issued = !book.issued;
+
+                message.textContent = book.issued
+                    ? "Book issued successfully!"
+                    : "Book returned successfully!";
+
+                displayBooks();
+            });
+
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.className = "delete-btn";
+
+            deleteButton.addEventListener("click", function() {
+                if (book.issued) {
+                    message.textContent =
+                        "Return the book before deleting it.";
+                    return;
+                }
+
+                books = books.filter(function(item) {
+                    return item.id !== book.id;
+                });
+
+                message.textContent = "Book deleted successfully!";
+                displayBooks();
+            });
+
+            actionCell.append(issueButton, deleteButton);
+            row.appendChild(actionCell);
+            bookList.appendChild(row);
+        });
+    }
+
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const name =
+            document.getElementById("bookName").value.trim();
+
+        const author =
+            document.getElementById("author").value.trim();
+
+        const id =
+            Number(document.getElementById("bookId").value);
+
+        if (!Number.isInteger(id) || id < 1) {
+            message.textContent = "Enter a valid book ID.";
+            return;
+        }
+
+        const exists = books.some(function(book) {
+            return book.id === id;
+        });
+
+        if (exists) {
+            message.textContent = "This book ID already exists.";
+            return;
+        }
+
+        books.push({
+            id: id,
+            name: name,
+            author: author,
+            issued: false
+        });
+
+        form.reset();
+        message.textContent = "New book added successfully!";
+        displayBooks();
+    });
+
+    search.addEventListener("input", function() {
+        const keyword = search.value.toLowerCase();
+
+        const filteredBooks = books.filter(function(book) {
+            return book.name.toLowerCase().includes(keyword) ||
+                   book.author.toLowerCase().includes(keyword);
+        });
+
+        displayBooks(filteredBooks);
+    });
+
+    displayBooks();
+</script>
+
+</body>
+</html>
