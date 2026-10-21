@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Loan Checker</title>
+</head>
+<body>
+    <h2>Smart Loan Checker 💰</h2>
+
+    <label>Loan Amount (₹):</label><br>
+    <input type="number" id="loan" placeholder="e.g. 200000"><br><br>
+
+    <label>Annual Interest Rate (%):</label><br>
+    <input type="number" id="rate" placeholder="e.g. 10"><br><br>
+
+    <label>Loan Period (Years):</label><br>
+    <input type="number" id="years" placeholder="e.g. 3"><br><br>
+
+    <label>Monthly Income (₹):</label><br>
+    <input type="number" id="income" placeholder="e.g. 30000"><br><br>
+
+    <button onclick="checkLoan()">Check My Loan</button>
+
+    <h3 id="result"></h3>
+
+    <script>
+        function checkLoan() {
+            let loan = Number(document.getElementById("loan").value);
+            let rate = Number(document.getElementById("rate").value);
+            let years = Number(document.getElementById("years").value);
+            let income = Number(document.getElementById("income").value);
+
+            let result = document.getElementById("result");
+
+            if (loan <= 0 || rate < 0 || years <= 0 || income <= 0 ||
+                !Number.isFinite(loan) || !Number.isFinite(rate) ||
+                !Number.isFinite(years) || !Number.isFinite(income) ||
+                !document.getElementById("loan").value ||
+                !document.getElementById("rate").value ||
+                !document.getElementById("years").value ||
+                !document.getElementById("income").value) {
+                result.innerText = "Please enter valid details!";
+                return;
+            }
+
+            let monthlyRate = rate / 1200;
+            let months = years * 12;
+            let emi;
+
+            if (monthlyRate === 0) {
+                emi = loan / months;
+            } else {
+                emi = loan * monthlyRate *
+                    Math.pow(1 + monthlyRate, months) /
+                    (Math.pow(1 + monthlyRate, months) - 1);
+            }
+
+            let percentage = (emi / income) * 100;
+            let totalPayment = emi * months;
+            let interest = totalPayment - loan;
+
+            result.innerHTML =
+                "Monthly EMI: ₹" + emi.toFixed(2) +
+                "<br>Total Interest: ₹" + interest.toFixed(2) +
+                "<br>Total Payment: ₹" + totalPayment.toFixed(2) +
+                "<br>Income Used for EMI: " + percentage.toFixed(1) + "%" +
+                "<br><br>" +
+                (percentage <= 25
+                    ? "EMI looks relatively manageable."
+                    : percentage <= 40
+                    ? "Caution! Check your other expenses."
+                    : "High EMI burden. Consider a smaller loan.");
+        }
+    </script>
+</body>
+</html>
