@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Electricity Bill</title>
+</head>
+<body>
+    <h2>⚡ Electricity Bill Calculator</h2>
+
+    <label>Electricity Units (kWh):</label><br>
+    <input type="number" id="units" placeholder="Enter units"><br><br>
+
+    <button onclick="calculateBill()">Calculate Bill</button>
+
+    <h3 id="result"></h3>
+
+    <script>
+        function calculateBill() {
+            let units = Number(document.getElementById("units").value);
+            let bill = 0;
+
+            if (document.getElementById("units").value === "" ||
+                !Number.isFinite(units) || units < 0) {
+                document.getElementById("result").innerText =
+                    "Please enter valid units!";
+                return;
+            }
+
+            if (units <= 100) {
+                bill = units * 3;
+            } else if (units <= 200) {
+                bill = 100 * 3 + (units - 100) * 5;
+            } else {
+                bill = 100 * 3 + 100 * 5 + (units - 200) * 8;
+            }
+
+            document.getElementById("result").innerHTML =
+                "Units Used: " + units + " kWh" +
+                "<br>Estimated Bill: ₹" + bill.toFixed(2) +
+                "<br>" +
+                (units > 200
+                    ? "High usage! Try saving electricity."
+                    : "Keep saving electricity!");
+        }
+    </script>
+</body>
+</html>
