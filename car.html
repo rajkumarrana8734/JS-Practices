@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Car Fuel Calculator</title>
+</head>
+<body>
+
+    <h2>🚗 Car Fuel Cost Calculator</h2>
+
+    <label>Travel Distance (KM):</label><br>
+    <input type="number" id="distance" placeholder="Enter distance">
+    <br><br>
+
+    <label>Car Mileage (KM/L):</label><br>
+    <input type="number" id="mileage" placeholder="Enter mileage">
+    <br><br>
+
+    <label>Petrol Price (₹/L):</label><br>
+    <input type="number" id="price" placeholder="Enter petrol price">
+    <br><br>
+
+    <button onclick="calculateCost()">Calculate Cost</button>
+
+    <h3 id="result"></h3>
+
+    <script>
+        function calculateCost() {
+            let distance = Number(
+                document.getElementById("distance").value
+            );
+
+            let mileage = Number(
+                document.getElementById("mileage").value
+            );
+
+            let price = Number(
+                document.getElementById("price").value
+            );
+
+            let result = document.getElementById("result");
+
+            if (
+                document.getElementById("distance").value === "" ||
+                document.getElementById("mileage").value === "" ||
+                document.getElementById("price").value === "" ||
+                !Number.isFinite(distance) ||
+                !Number.isFinite(mileage) ||
+                !Number.isFinite(price) ||
+                distance <= 0 || mileage <= 0 || price <= 0
+            ) {
+                result.innerText = "Please enter valid values!";
+                return;
+            }
+
+            let fuel = distance / mileage;
+            let cost = fuel * price;
+
+            result.innerHTML =
+                "Distance: " + distance + " KM" +
+                "<br>Fuel Required: " + fuel.toFixed(2) + " Litres" +
+                "<br>Total Trip Cost: ₹" + cost.toFixed(2);
+        }
+    </script>
+
+</body>
+</html>
