@@ -9,6 +9,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%);
             margin: 20px;
             height: 100vh;
             width:100%;
@@ -16,6 +17,24 @@
             justify-content: center;
             align-items: center;
         }
+
+        .cricle1{
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, #ec4899, #8b5cf6);
+            border-radius: 50%;
+            top: 10%;
+            left: 20%;
+            filter: blur(50px);
+            opacity: 0.6;
+            z-index: 1;
+        }
+
+        
+        
+        
+
         .container{
             border: 1px solid #ccc;
             width: 400px;
@@ -70,6 +89,8 @@
     </style>
 </head>
 <body>
+    <div class="cricle1"></div>
+    <div class="cricle2"></div>
   <div class="container">
     <h2>Car Fuel Cost Calculator</h2>
 
