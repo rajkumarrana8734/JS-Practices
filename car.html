@@ -36,13 +36,18 @@
         
 
         .container{
-            border: 1px solid #ccc;
             width: 400px;
-            height: 450px;
-            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.25),
-                        inset 0 1px 1px rgba(255, 255, 255, 0.6);
-            border-radius: 25px;
-            background-color: aliceblue;
+            height: 0 auto;
+             background: rgba(255, 255, 255, 0.12);               /* Halka transparent white */
+            backdrop-filter: blur(16px);                        /* Piche ke elements ko dhundhla karna */
+            -ebkwit-backdrop-filter: blur(16px);                /* Safari browser support */
+            border: 1px solid rgba(255, 255, 255, 0.25);        /* Kanch ki patli chamakdaar kinari */
+            border-radius: 20px;                                /* Rounded smooth corners */
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);         /* Card ke niche ki shadow */
+            
+            padding: 30px;
+            color: #ffffff;
+        
         }
         h2{
             text-align: center;
@@ -51,25 +56,36 @@
 
         input[type="number"] {
             width: 200px;
-            padding: 5px;
+             font-size: 20px;
+            padding-right: 130px;
+            padding-top: 10px;
+            padding-bottom: 10px;
             margin-bottom: 10px;
-            margin-left: 100px;
+            margin-left: 30px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.12); 
+            
+        
+            
         }
 
         .td{
-            padding-left: 100px;
+            padding-left: 30px;
             font-weight: bold;
         }
 
         .cm{
-            padding-left: 100px;
+            padding-left: 30px;
             font-weight: bold;
         }
         .pp{
-            padding-left: 100px;
+            padding-left: 30px;
             font-weight: bold;
         }
 
+       
+        
         button {
             padding: 10px 20px;
             background-color: #4CAF50;
@@ -85,6 +101,7 @@
 
         h3 {
             margin-top: 20px;
+            text-align: center;
         }
     </style>
 </head>
@@ -95,15 +112,15 @@
     <h2>Car Fuel Cost Calculator</h2>
 
     <label class="td">Travel Distance (KM):</label><br>
-    <input type="number" id="distance" placeholder="Enter distance">
+    <input type="number" id="distance" placeholder="e.g. 250">
     <br><br>
 
     <label class="cm">Car Mileage (KM/L):</label><br>
-    <input type="number" id="mileage" placeholder="Enter mileage">
+    <input type="number" id="mileage" placeholder="e.g. 15">
     <br><br>
 
     <label class="pp">Petrol Price (₹/L):</label><br>
-    <input type="number" id="price" placeholder="Enter petrol price">
+    <input type="number" id="price" placeholder="e.g. 100">
     <br><br>
 
     <button onclick="calculateCost()">Calculate Cost</button>
