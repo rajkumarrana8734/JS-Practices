@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>practice</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+        body{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+            width:100%;
+            background-color:#f1f1f1;
+            background-image:linear-gradient(315deg, #51e2f5,#9df9ef, #edf756, #edf756,#a28089);
+        }
+        .box{
+            width:450px;
+            height:0 auto;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px 5px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius:15px;
+            
+        
+        }
+        h1{
+            text-align:center;
+            padding-top:10px;
+            color:blue;
+        }
+        label{
+            font-size:20px;
+            padding-left:20px;
+        }
+        input[type="text"], input[type="password"]{
+            width:90%;
+            height:30px;
+            margin-left:20px;
+            border:1px solid #ccc;
+             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.15);
+            
+            
+        }
+        .button{
+            width:50%;
+            height:30px;
+            margin-left:25%;
+            transition:0.5s;
+            
+            
+        }
+        .button:hover{
+            background-color:blue;
+            color:#fff;
+        }
+        .sign{
+            text-decoration:none;
+            color:blue;
+            margin-left:80%;
+            
+            
+        }
+        .sign:hover{
+            text-decoration:underline;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <h1>lOGIN PAGE</h1>
+
+    <form onsubmit="return validateForm();">
+     <label for="username">Username:</label><br>
+     <input type="text" id="username" name="username" required><br><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <input type="submit" class="button" value="Login"><br><br>
+        <a href="#" class="sign">Sign Up</a>
+
+        <p class="answer"></p>
+    </form>
+</div>   
+ 
+  
+
+
+
+
+    <script>
+   
+
+    </script>
+</body>
+</html>
