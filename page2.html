@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>practice</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+        body{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+            width:100%;
+            background-color:#f1f1f1;
+            background-image:linear-gradient(315deg, #51e2f5,#9df9ef, #edf756, #edf756,#a28089);
+        }
+        .box{
+            width:450px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px 5px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius:15px;
+            
+        
+        }
+        h1{
+            text-align:center;
+            padding-top:10px;
+            color:blue;
+        }
+        label{
+            font-size:20px;
+            padding-left:20px;
+        }
+        input[type="text"], input[type="password"], input[type="number"]{
+            width:90%;
+            height:30px;
+            margin-left:20px;
+            border:1px solid #ccc;
+             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.15);
+            
+            
+        }
+
+        select{
+             width:90%;
+            height:30px;
+            margin-left:20px;
+            border:1px solid #ccc;
+             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        .button{
+            width:50%;
+            height:30px;
+            margin-left:25%;
+            transition:0.5s;
+            
+            
+        }
+        .button:hover{
+            background-color:blue;
+            color:#fff;
+        
+        }
+        .sign{
+            text-decoration:none;
+            color:blue;
+            margin-left:80%;
+            
+            
+        }
+        .sign:hover{
+            text-decoration:underline;
+        }
+        #answer{
+            text-align:center;
+            font-size:20px;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <h1>lOGIN PAGE</h1>
+
+    <form onsubmit="return validateForm();">
+
+        <label for="name">name</label><br>
+     <input type="text" id="name" name="name"><br><br>
+
+     <label for="username">Username:</label><br>
+     <input type="text" id="username" name="username"><br><br>
+
+      <label for="age">age:</label><br>
+     <input type="number" id="age" name="age"><br><br>
+
+        <label for="password">gender:</label><br>
+        <select id="gender" >
+            <option  selected disabled>select</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select><br><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br><br>
+
+        
+        <label for="cnfpassword">confirm Password:</label><br>
+        <input type="password" id="cnfpassword" name="password"><br><br>
+
+        <input type="submit" class="button" value="Login"><br><br>
+       
+
+        
+    </form>
+     <p id="answer"></p><br>
+      <a href="page.html" class="sign">  Login here.</a>
+</div>   
+ 
+  
+
+
+
+
+    <script>
+
+ let   name = document.getElementById("name");
+ let  username = document.getElementById("username");
+ let age = document.getElementById("age");
+ let  password = document.getElementById("password");
+ let  cnfpassword = document.getElementById("cnfpassword");
+ let  gender = document.getElementById("gender");
+let   answer = document.getElementById("answer");
+
+   function validateForm() {
+    if(username.value.trim() === "" || password.value.trim() === "" || cnfpassword.value.trim() === ""){
+        answer.innerHTML = "Please fill  fields.";
+         answer.style.color = "red";
+    }
+    else if(gender.value.trim() === ""){
+        answer.innerHTML = "Please select a gender.";
+        answer.style.color = "red";
+    }
+    else {
+        answer.innerHTML = "Login successfully!";
+        answer.style.color = "green";
+        alert("Login successful! Welcome, " + username.value.trim());
+    }
+    return false; 
+ } 
+
+   
+    </script>
+</body>
+</html>
