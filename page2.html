@@ -97,16 +97,16 @@
     <form onsubmit="return validateForm();">
 
         <label for="name">name</label><br>
-     <input type="text" id="name" name="name"><br><br>
+     <input type="text" id="name" name="name" placeholder="e.g. harsh Mehta"><br><br>
 
      <label for="username">Username:</label><br>
-     <input type="text" id="username" name="username"><br><br>
+     <input type="text" id="username" name="username" placeholder="e.g. @harsh123"><br><br>
 
       <label for="age">age:</label><br>
      <input type="number" id="age" name="age"><br><br>
 
         <label for="password">gender:</label><br>
-        <select id="gender" >
+        <select id="gender" name="gender">
             <option  selected disabled>select</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
@@ -134,31 +134,42 @@
 
 
     <script>
+let name = document.getElementById("name");
+let username = document.getElementById("username");
+let age = document.getElementById("age");
+let password = document.getElementById("password");
+let cnfpassword = document.getElementById("cnfpassword");
+let gender = document.getElementById("gender");
+let answer = document.getElementById("answer");
 
- let   name = document.getElementById("name");
- let  username = document.getElementById("username");
- let age = document.getElementById("age");
- let  password = document.getElementById("password");
- let  cnfpassword = document.getElementById("cnfpassword");
- let  gender = document.getElementById("gender");
-let   answer = document.getElementById("answer");
+function validateForm() {
+    answer.style.color = "red";
 
-   function validateForm() {
-    if(username.value.trim() === "" || password.value.trim() === "" || cnfpassword.value.trim() === ""){
-        answer.innerHTML = "Please fill  fields.";
-         answer.style.color = "red";
+    if (name.value.trim() === "") {
+        answer.innerHTML = "Please enter your name.";
     }
-    else if(gender.value.trim() === ""){
+    else if (username.value.trim() === "") {
+        answer.innerHTML = "Please enter a username.";
+    }
+    else if (age.value.trim() === "" || Number(age.value) <= 0) {
+        answer.innerHTML = "Please enter a valid age.";
+    }
+    else if (gender.value === "") {
         answer.innerHTML = "Please select a gender.";
-        answer.style.color = "red";
+    }
+    else if (password.value.trim() === "" || cnfpassword.value.trim() === "") {
+        answer.innerHTML = "Please fill both password fields.";
+    }
+    else if (password.value !== cnfpassword.value) {
+        answer.innerHTML = "Passwords do not match.";
     }
     else {
-        answer.innerHTML = "Login successfully!";
+        answer.innerHTML = "Signed up successfully!";
         answer.style.color = "green";
-        alert("Login successful! Welcome, " + username.value.trim());
+        alert("Sign up successful! Welcome, " + username.value.trim());
     }
-    return false; 
- } 
+    return false;
+}
 
    
     </script>
