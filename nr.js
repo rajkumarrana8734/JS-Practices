@@ -19,3 +19,32 @@
 //     }
     
 // })
+
+// ==============================================================================
+
+// let fileinp = document.getElementById("file");
+// let btn = document.getElementById("btn");
+
+// btn.addEventListener("click",function(){
+//     fileinp.click();
+// })
+
+// fileinp.addEventListener("change",function(dets){
+//      const file =dets.target?.files[0];
+//      if(file){
+//         btn.textContent=file.name; 
+//      }
+// })
+
+// =======================================================================================
+
+
+// let boxi = document.querySelector(".main");
+
+// boxi.addEventListener("mouseover",function () {
+//     boxi.style.backgroundColor = "blue";
+// });
+
+// boxi.addEventListener("mouseout",function () {
+//     boxi.style.backgroundColor = "red";
+// });
