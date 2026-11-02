@@ -48,9 +48,18 @@
 
 // =================================================================================
 
-let A = document.getElementById("box!");
+// let A = document.getElementById("box!");
 
-A.addEventListener("click",function(){
-    alert("clicked")
-})
+// A.addEventListener("click",function(){
+//     alert("clicked")
+// })
 
+// =======================================================================================
+
+let ul = document.querySelector("ul");
+
+
+
+ul.addEventListener("click",function(dets){
+    dets.target.ClassList.toogle("lt");
+});
