@@ -39,12 +39,10 @@
 // =======================================================================================
 
 
-// let boxi = document.querySelector(".main");
+let boxi = document.querySelector("#main");
 
-// boxi.addEventListener("mouseover",function () {
-//     boxi.style.backgroundColor = "blue";
-// });
+window.addEventListener("mousemove",function (dets) {
+    boxi.style.top = dets.clientY+"px";
+      boxi.style.left = dets.clientX+"px";
+});
 
-// boxi.addEventListener("mouseout",function () {
-//     boxi.style.backgroundColor = "red";
-// });
