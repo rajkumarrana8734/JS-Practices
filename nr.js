@@ -39,10 +39,18 @@
 // =======================================================================================
 
 
-let boxi = document.querySelector("#main");
+// let boxi = document.querySelector("#main");
 
-window.addEventListener("mousemove",function (dets) {
-    boxi.style.top = dets.clientY+"px";
-      boxi.style.left = dets.clientX+"px";
-});
+// window.addEventListener("mousemove",function (dets) {
+//     boxi.style.top = dets.clientY+"px";
+//       boxi.style.left = dets.clientX+"px";
+// });
+
+// =================================================================================
+
+let A = document.getElementById("box!");
+
+A.addEventListener("click",function(){
+    alert("clicked")
+})
 
