@@ -56,10 +56,27 @@
 
 // =======================================================================================
 
-let ul = document.querySelector("ul");
+// let ul = document.querySelector("ul");
 
 
 
-ul.addEventListener("click",function(dets){
-    dets.target.ClassList.toogle("lt");
+// ul.addEventListener("click",function(dets){
+//     dets.target.ClassList.toogle("lt");
+// });
+
+// ===========================================================================================
+
+
+let  input = document.querySelector("input");
+let span = document.querySelector("span");
+
+input.addEventListener("input",function(dets){
+    let left =20 - input.value.length;
+    span.textContent = left
+    if(left < 0){
+        span.style.color="red";}
+    else{
+        span.style.color="white"
+    }
+    
 });
