@@ -122,14 +122,15 @@ btn.addEventListener("click", function(){
   let interval = setInterval(function(){
     if(count  >= 99){
       clearInterval(interval);
-      heading.textContent = "Download Complete";
     }
     count++;
     progress.style.width = `${count}%`;
     percentage.textContent = `${count}%`;
     btn.textContent = "Downloading...";
+    
     if(count >= 99){
       btn.textContent = "Download";
+      heading.textContent = "Download Complete";
     }
   },100);
 
