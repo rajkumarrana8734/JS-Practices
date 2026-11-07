@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Fuel Cost Calculator</title>
+    
+    <style>
+        /* 1. Global Reset & Box Sizing */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* 2. Body background with rich color gradient (Glass effect tabhi dikhta hai jab piche rang ho) */
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* 3. Background me colorful glowing circles (Taaki kanch ke piche se chamkein) */
+        .circle1 {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, #ec4899, #8b5cf6);
+            border-radius: 50%;
+            top: 10%;
+            left: 20%;
+            filter: blur(50px);
+            opacity: 0.6;
+            z-index: 1;
+        }
+
+        .circle2 {
+            position: absolute;
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle, #06b6d4, #3b82f6);
+            border-radius: 50%;
+            bottom: 10%;
+            right: 20%;
+            filter: blur(50px);
+            opacity: 0.6;
+            z-index: 1;
+        }
+
+        /* 4. ASLI GLASSMORPHISM CARD */
+        .glass-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 420px;
+            
+            /* Glassmorphism ke 4 mukhya niyam: */
+            background: rgba(255, 255, 255, 0.12);               /* Halka transparent white */
+            backdrop-filter: blur(16px);                        /* Piche ke elements ko dhundhla karna */
+            -webkit-backdrop-filter: blur(16px);                /* Safari browser support */
+            border: 1px solid rgba(255, 255, 255, 0.25);        /* Kanch ki patli chamakdaar kinari */
+            border-radius: 20px;                                /* Rounded smooth corners */
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);         /* Card ke niche ki shadow */
+            
+            padding: 30px;
+            color: #ffffff;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+            color: #e2e8f0;
+            font-weight: 500;
+        }
+
+        /* Inputs ke liye glass effect */
+        input {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        /* Input placeholder ka color */
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Jab user input par click kare */
+        input:focus {
+            background: rgba(255, 255, 255, 0.18);
+            border-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Calculate Button */
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 10px;
+            background: linear-gradient(135deg, #06b6d4, #3b82f6);
+            border: none;
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(6, 182, 212, 0.4);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(6, 182, 212, 0.6);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        /* Result Area */
+        #result {
+            margin-top: 22px;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            display: none; /* By default hidden rahega jab tak calculate na dabaye */
+        }
+
+        .success-box {
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #dcfce7;
+        }
+
+        .error-box {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fecaca;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background glowing shapes for glass blur reflection -->
+    <div class="circle1"></div>
+    <div class="circle2"></div>
+
+    <!-- Main Glassmorphism Card -->
+    <div class="glass-container">
+        <h2>🚗 Car Fuel Calculator</h2>
+
+        <div class="input-group">
+            <label for="distance">Travel Distance (KM):</label>
+            <input type="number" id="distance" placeholder="e.g. 250">
+        </div>
+
+        <div class="input-group">
+            <label for="mileage">Car Mileage (KM/L):</label>
+            <input type="number" id="mileage" placeholder="e.g. 18">
+        </div>
+
+        <div class="input-group">
+            <label for="price">Petrol Price (₹/L):</label>
+            <input type="number" id="price" placeholder="e.g. 96.5">
+        </div>
+
+        <button onclick="calculateCost()">Calculate Cost</button>
+
+        <div id="result"></div>
+    </div>
+
+    <!-- Aapka logic bilkul intact rakha gaya hai -->
+    <script>
+        function calculateCost() {
+            let distance = Number(document.getElementById("distance").value);
+            let mileage = Number(document.getElementById("mileage").value);
+            let price = Number(document.getElementById("price").value);
+            let result = document.getElementById("result");
+
+            if (
+                document.getElementById("distance").value === "" ||
+                document.getElementById("mileage").value === "" ||
+                document.getElementById("price").value === "" ||
+                !Number.isFinite(distance) ||
+                !Number.isFinite(mileage) ||
+                !Number.isFinite(price) ||
+                distance <= 0 || mileage <= 0 || price <= 0
+            ) {
+                result.style.display = "block";
+                result.className = "error-box";
+                result.innerText = "⚠️ Please enter valid positive values!";
+                return;
+            }
+
+            let fuel = distance / mileage;
+            let cost = fuel * price;
+
+            result.style.display = "block";
+            result.className = "success-box";
+            result.innerHTML =
+                "📍 <b>Distance:</b> " + distance + " KM<br>" +
+                "⛽ <b>Fuel Required:</b> " + fuel.toFixed(2) + " Litres<br>" +
+                "💰 <b>Total Trip Cost:</b> ₹" + cost.toFixed(2);
+        }
+    </script>
+
+</body>
+</html>
