@@ -22,7 +22,7 @@
         .box{
             width: 400px;
             height: 0 auto;
-            background-color: #944040;
+            background-color: #929440;
             border-radius: 10px;
             text-align: center;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -59,6 +59,7 @@
     <script>
         let timer = document.querySelector('.timer');
         let btn = document.querySelector('.btn');
+        let h1 = document.querySelector('h1');
 
         btn.addEventListener('click', function(){
             let time = 10;
@@ -68,6 +69,9 @@
                 if(time < 0){
                     clearInterval(interval);
                     timer.innerHTML = "Time's up!";
+                    h1.innerHTML = "Timer Finished";
+                    h1.style.color = "red";
+
                 }
             }, 1000);
         });
