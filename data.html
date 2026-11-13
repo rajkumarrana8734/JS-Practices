@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Usage Calculator</title>
+</head>
+<body>
+
+    <h2>Mobile Data Calculator</h2>
+
+    <label>Total Data (GB):</label>
+    <input type="number" id="total" placeholder="Example: 2">
+
+    <br><br>
+
+    <label>Used Data (GB):</label>
+    <input type="number" id="used" placeholder="Example: 1.2">
+
+    <br><br>
+
+    <button onclick="calculateData()">Check Data</button>
+
+    <h3 id="result"></h3>
+
+    <script>
+        function calculateData() {
+
+            let total = Number(document.getElementById("total").value);
+            let used = Number(document.getElementById("used").value);
+
+            if (total <= 0 || used < 0 || used > total) {
+                document.getElementById("result").innerHTML =
+                    "Please enter valid data!";
+                return;
+            }
+
+            let remaining = total - used;
+            let percentage = (used / total) * 100;
+
+            document.getElementById("result").innerHTML =
+                "Remaining Data: " + remaining.toFixed(2) + " GB<br>" +
+                "Data Used: " + percentage.toFixed(1) + "%";
+        }
+    </script>
+
+</body>
+</html>
