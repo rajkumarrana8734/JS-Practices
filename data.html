@@ -3,9 +3,33 @@
 <html>
 <head>
     <title>Data Usage Calculator</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #b79f9f;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .box {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 300px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-
+<div class="box">
     <h2>Mobile Data Calculator</h2>
 
     <label>Total Data (GB):</label>
@@ -21,6 +45,7 @@
     <button onclick="calculateData()">Check Data</button>
 
     <h3 id="result"></h3>
+    </div>
 
     <script>
         function calculateData() {
