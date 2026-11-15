@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Closure Toaster (Pure CSS)</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: sans-serif;
+    }
+
+    body {
+      background-color: #18181b;
+      min-height: 100vh;
+     
+    }
+
+    .parent {
+      position: fixed;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      
+    }
+
+  
+    .left { left: 20px; }
+    .right { right: 20px; }
+    .top { top: 20px; }
+    .bottom { bottom: 20px; }
+
+    .toast {
+      padding: 12px 24px;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      font-size: 15px;
+    }
+    .dark {
+      background-color: #1f2937;
+      color: #ffffff;
+    }
+
+    .light {
+      background-color: #f3f4f6;
+      color: #000000;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="parent"></div>
+
+  <script>
+   function createToaster(config){
+
+    return function(str){
+       let div = document.createElement("div");
+        div.textContent = str;
+
+        div.className =`toast ${config.theme === 'dark' ? 'dark' : 'light'}`;
+        let parent = document.querySelector('.parent');
+        parent.appendChild(div);
+
+        parent.className = `parent ${config.positionX} ${config.positionY}`;
+
+        setTimeout(() => {
+          parent.removeChild(div);
+        }, config.duration * 1000);
+      };
+    
+    }
+   
+
+   let toaster = createToaster({
+    positionX: 'left',
+    positionY: 'top',
+    theme: 'dark',
+    duration: 3,
+   }) ;
+
+   toaster('Hello World');
+
+   setTimeout(() => {
+    toaster('raj accesssed');
+    }, 2000);
+  </script>
+
+</body>
+</html>
