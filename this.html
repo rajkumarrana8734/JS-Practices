@@ -3,9 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>profile tag</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+            box-sizing: border-box;
+        }
+
+        body{
+            height:100vh;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg,rgb(4, 4, 4),rgb(34, 33, 33),rgb(13, 13, 13));
+        }
+
+        .box{
+            height:400px;
+            width:400px;
+            border:1px solid black;
+            border-radius: 20px;
+            box-shadow: 0px 5px 15px #ccc;
+            animation: bgcolor 2s linear 3s infinite normal;
+            
+            
+        }
+
+ 
+
+
+        h1{
+            text-align: center;
+            color:white;
+        }
+
+        label{
+            padding-left:20px;
+            color:azure;
+            font-size: 20px;
+        }
+
+        .inp{
+            margin-left:20px;
+            width:90%;
+            height:30px;
+            background-color:rgb(34, 33, 33) ;
+        }
+
+        textarea{
+            margin-left:20px;
+            width:90%;
+            height:60px;
+            background-color:rgb(34, 33, 33) ;
+        }
+
+        .btn{
+           margin-left:20px;
+            width:90%; 
+            font-size: 20px;
+              background-color:rgb(70, 69, 69) ;
+
+        }
+
+        .btn:hover{
+            background-color: black;
+            color:white;
+        }
+
+
+    </style>
 </head>
 <body>
-    <script src="this.js"></script>
+    <div class="box">
+        <h1>Add User</h1>
+    <form>
+      <label for="name" >Name</label><br>
+      <input type="text" class="inp"><br><br>
+
+      <label for="role">Role</label><br>
+      <input type="text" class="inp"><br><br>
+
+      <label for="bio">Bio</label><br>
+      <textarea></textarea><br><br>
+
+      <label for="url">Phote URL</label><br>
+      <input type="url" class="inp"><br><br>
+
+      <input class="btn" type="submit">
+
+
+
+
+    </form>
+    </div>
+
+
+
+    <script></script>
 </body>
 </html>
