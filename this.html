@@ -3,103 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>profile tag</title>
+    <title>Profile Tag with Basic 'this'</title>
     <style>
-        *{
-            padding:0;
-            margin:0;
+        * {
+            padding: 0;
+            margin: 0;
             box-sizing: border-box;
         }
 
-        body{
-            height:100vh;
-            display:flex;
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(45deg,rgb(4, 4, 4),rgb(34, 33, 33),rgb(13, 13, 13));
+            gap: 30px;
+            padding: 20px;
+            background: linear-gradient(45deg, rgb(4, 4, 4), rgb(34, 33, 33), rgb(13, 13, 13));
+            font-family: sans-serif;
         }
 
-        .box{
-            height:400px;
-            width:400px;
-            border:1px solid black;
+        .box {
+            height: 430px;
+            width: 400px;
+            border: 1px solid black;
             border-radius: 20px;
             box-shadow: 0px 5px 15px #ccc;
-            animation: bgcolor 2s linear 3s infinite normal;
-            
-            
+            padding-top: 15px;
         }
 
- 
-
-
-        h1{
+        h1 {
             text-align: center;
-            color:white;
+            color: white;
+            margin-bottom: 10px;
         }
 
-        label{
-            padding-left:20px;
-            color:azure;
-            font-size: 20px;
+        label {
+            padding-left: 20px;
+            color: azure;
+            font-size: 18px;
         }
 
-        .inp{
-            margin-left:20px;
-            width:90%;
-            height:30px;
-            background-color:rgb(34, 33, 33) ;
+        .inp {
+            margin-left: 20px;
+            width: 90%;
+            height: 32px;
+            background-color: rgb(34, 33, 33);
+            color: white;
+            padding: 5px;
+            border: 1px solid #555;
         }
 
-        textarea{
-            margin-left:20px;
-            width:90%;
-            height:60px;
-            background-color:rgb(34, 33, 33) ;
+        textarea {
+            margin-left: 20px;
+            width: 90%;
+            height: 60px;
+            background-color: rgb(34, 33, 33);
+            color: white;
+            padding: 5px;
+            border: 1px solid #555;
         }
 
-        .btn{
-           margin-left:20px;
-            width:90%; 
-            font-size: 20px;
-              background-color:rgb(70, 69, 69) ;
-
+        .btn {
+            margin-left: 20px;
+            width: 90%;
+            height: 35px;
+            font-size: 18px;
+            background-color: rgb(70, 69, 69);
+            color: white;
+            border: none;
+            cursor: pointer;
         }
 
-        .btn:hover{
+        .btn:hover {
             background-color: black;
-            color:white;
+            color: white;
         }
 
+        /* Profile Cards Container */
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
 
+        /* Single Profile Card Styling */
+        .profile-card {
+            width: 260px;
+            background-color: rgb(25, 25, 25);
+            border-radius: 15px;
+            box-shadow: 0px 4px 12px rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            text-align: center;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s ease, border 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .profile-card:hover {
+            transform: scale(1.03);
+            border: 1px solid #ff4d4d;
+        }
+
+        .profile-card img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ccc;
+            margin-bottom: 12px;
+        }
+
+        .profile-card h2 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .profile-card h4 {
+            font-size: 14px;
+            color: #aaa;
+            margin-bottom: 10px;
+        }
+
+        .profile-card p {
+            font-size: 14px;
+            color: #ddd;
+        }
     </style>
 </head>
 <body>
+
     <div class="box">
         <h1>Add User</h1>
-    <form>
-      <label for="name" >Name</label><br>
-      <input type="text" class="inp"><br><br>
+        <form>
+            <label for="name">Name</label><br>
+            <input type="text" name="username" class="inp" required><br><br>
 
-      <label for="role">Role</label><br>
-      <input type="text" class="inp"><br><br>
+            <label for="role">Role</label><br>
+            <input type="text" name="role" class="inp"><br><br>
 
-      <label for="bio">Bio</label><br>
-      <textarea></textarea><br><br>
+            <label for="bio">Bio</label><br>
+            <textarea name="bio" required></textarea><br><br>
 
-      <label for="url">Phote URL</label><br>
-      <input type="url" class="inp"><br><br>
+            <label for="url">Photo URL</label><br>
+            <input type="url" name="photo" class="inp" required><br><br>
 
-      <input class="btn" type="submit">
-
-
-
-
-    </form>
+            <input class="btn" type="submit" value="Create Card">
+        </form>
     </div>
 
+  
+    <div class="card-container"></div>
 
+    <script>
+        let form = document.querySelector("form");
+        let cardContainer = document.querySelector(".card-container");
 
-    <script></script>
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+        
+            let nameVal = this.username.value;
+            let roleVal = this.role.value || "Member";
+            let bioVal = this.bio.value;
+            let photoVal = this.photo.value;
+
+           
+            let cardDiv = document.createElement("div");
+            cardDiv.classList.add("profile-card");
+
+            cardDiv.innerHTML = `
+                <img src="${photoVal}" alt="${nameVal}">
+                <h2>${nameVal}</h2>
+                <h4>${roleVal}</h4>
+                <p>${bioVal}</p>
+            `;
+
+            
+            cardDiv.addEventListener("click", function () {
+                this.remove();
+            });
+
+    
+            cardContainer.appendChild(cardDiv);
+
+         
+            this.reset();
+        });
+    </script>
+
 </body>
 </html>
