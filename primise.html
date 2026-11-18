@@ -9,24 +9,47 @@
     
 
     <script>
-        const pr  = new Promise( function (res,rej){ 
-        setTimeout(() => {
-           let rn = Math.floor(Math.random()*10);
-           if(rn > 5){
-            res("resolved eith" +  rn);}
-        else{
-            rej("rejected with" +  rn);
-        }
-           }
-        , 2000);
-        });
+        // const pr  = new Promise( function (res,rej){ 
+        // setTimeout(() => {
+        //    let rn = Math.floor(Math.random()*10);
+        //    if(rn > 5){
+        //     res("resolved eith" +  rn);}
+        // else{
+        //     rej("rejected with" +  rn);
+        // }
+        //    }
+        // , 2000);
+        // });
 
-        pr.then((data) => {
-            console.log(data);
-        })
-        .catch((err) => {
-            console.log(err);
-        })
+        // pr.then((data) => {
+        //     console.log(data);
+        // })
+        // .catch((err) => {
+        //     console.log(err);
+        // })
+
+
+ 
+let car  = new Promise((resolve,reject)=>{
+ showroom = false;
+
+ if(showroom){
+    resolve("showroom is open now !");
+
+ }
+else{
+    reject("showroom colsed X ")
+}
+});
+
+car
+.then((mass) =>{
+  console.log(mass)
+})
+.catch((err)=>{
+     console.log(err)
+});
+
     </script>
 </body>
 </html>
