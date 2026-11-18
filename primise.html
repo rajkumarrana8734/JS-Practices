@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        const pr  = new Promise( function (res,rej){ 
+        setTimeout(() => {
+           let rn = Math.floor(Math.random()*10);
+           if(rn > 5){
+            res("resolved eith" +  rn);}
+        else{
+            rej("rejected with" +  rn);
+        }
+           }
+        , 2000);
+        });
+
+        pr.then((data) => {
+            console.log(data);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+    </script>
+</body>
+</html>
